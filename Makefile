@@ -282,7 +282,7 @@ C_FLAGS += -mfloat-abi=softfp
 C_FLAGS += -DMBED_ROM_START=0x8000000
 C_FLAGS += -DMBED_ROM_SIZE=0x40000
 
-CXX_FLAGS += -std=gnu++98
+CXX_FLAGS += -std=gnu++11
 CXX_FLAGS += -fno-rtti
 CXX_FLAGS += -Wvla
 CXX_FLAGS += -include
@@ -461,9 +461,7 @@ $(PROJECT).hex: $(PROJECT).elf
 	$(ELF2BIN) -O ihex $< $@
 
 download: $(PROJECT).bin
-	st-flash write $(PROJECT).bin 0x8000000 > st-flash.log 2>&1
-	@grep -o "jolly" st-flash.log | sed 's/jolly/Success/'
-	@grep -o "Couldn" st-flash.log | sed 's/Couldn/Fail/'
+	cp $(PROJECT).bin /media/popi/NODE_L432KC1/
 
 
 # Rules
